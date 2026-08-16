@@ -40,23 +40,248 @@ current value + cheaper child
 
 We start with the bottom row, where no decision remains, and repeatedly collapse one triangle level upward until only the peak answer remains.
 
-## The clipboard analogy
+## Full analogy: the mountain-resort checkout
 
-Imagine the triangle is a mountain resort:
+Imagine the triangle is a mountain resort built on several terraces. You begin at the peak and must slide down to the base.
 
-- each rest house charges the number written in its cell;
-- each house has two downward ramps leading to its two children;
-- the goal is to reach the bottom while paying the least total toll.
+```text
+                         PEAK
+                          [2]
+                        /     \
+                     [3]       [4]
+                    /   \     /   \
+                 [6]    [5]      [7]
+                /   \  /   \    /   \
+              [4]   [1]   [8]   [3]       BASE
+```
 
-Instead of guessing from the peak, a smart traveler begins calculations at the base. The traveler carries a one-row clipboard named `dp`. Each clipboard slot records the cheapest total cost from that position to the bottom.
+Every bracketed number is a rest house:
 
-For the base row, the remaining cost is simply the toll of that base house:
+- the number is the toll charged for entering that house;
+- every house looks down at exactly two houses on the next terrace;
+- the left ramp leads to the child at the same column;
+- the right ramp leads to the child at the next column;
+- your goal is to reach the base while paying the smallest total toll.
+
+Standing at the peak and guessing which ramp will eventually be cheapest is difficult. A low toll now can lead to expensive tolls later. Instead, we send a smart traveler to calculate from the base upward.
+
+### The traveler’s clipboard
+
+The traveler carries one clipboard called `dp`:
+
+```text
+┌────────┬────────┬────────┬────────┐
+│ Slot 0 │ Slot 1 │ Slot 2 │ Slot 3 │
+└────────┴────────┴────────┴────────┘
+```
+
+Each slot records:
+
+> The cheapest total bill for finishing the journey from this position to the base.
+
+The traveler does not need a clipboard for every terrace. After solving a terrace, the same slots can be erased and reused for the terrace above.
+
+### Step 0: file the base-floor prices
+
+At the base, the journey is already finished. The remaining bill from a base house is simply that house’s own toll.
+
+```text
+Base houses:       [4]   [1]   [8]   [3]
+                     ↓     ↓     ↓     ↓
+Clipboard:         [4]   [1]   [8]   [3]
+```
+
+So the initial state is:
 
 ```text
 dp = [4, 1, 8, 3]
 ```
 
-As we move upward, we overwrite each clipboard slot with a smarter total. Because every higher row is shorter, the unused values at the end become irrelevant.
+### Step 1: climb to the `[6, 5, 7]` terrace
+
+The traveler now stands in front of each house on the terrace above the base. For every house, the clipboard already shows the complete cost of taking either downward ramp.
+
+#### House `6`
+
+```text
+             current toll
+                  [6]
+                 /   \
+                v     v
+left child      [4]   [1]      right child
+                  \   /
+                 choose 1
+
+total = 6 + min(4, 1) = 7
+```
+
+The right ramp is cheaper. Erase the old `4` in slot `0` and write `7`:
+
+```text
+dp = [7, 1, 8, 3]
+      ^
+    updated
+```
+
+#### House `5`
+
+```text
+                  [5]
+                 /   \
+                v     v
+               [1]   [8]
+                 \   /
+                choose 1
+
+total = 5 + min(1, 8) = 6
+```
+
+Update slot `1`:
+
+```text
+dp = [7, 6, 8, 3]
+         ^
+       updated
+```
+
+#### House `7`
+
+```text
+                  [7]
+                 /   \
+                v     v
+               [8]   [3]
+                 \   /
+                choose 3
+
+total = 7 + min(8, 3) = 10
+```
+
+Update slot `2`:
+
+```text
+dp = [7, 6, 10, 3]
+             ^
+           updated
+```
+
+The final `3` is now dead history. The terrace being summarized contains only three houses, so only the useful prefix `[7, 6, 10]` matters.
+
+```text
+Solved terrace:       [6]     [5]     [7]
+                        \       \       \
+Cheapest totals:       [7]     [6]     [10]
+
+Useful clipboard:     [ 7,      6,      10 ]   (3 ignored)
+```
+
+### Step 2: climb to the `[3, 4]` terrace
+
+The clipboard no longer represents individual base-house prices. It now contains the cheapest complete bill from each house on the `[6, 5, 7]` terrace to the base.
+
+#### House `3`
+
+```text
+                  [3]
+                 /   \
+                v     v
+               [7]   [6]      cheapest solved totals below
+                 \   /
+                choose 6
+
+total = 3 + min(7, 6) = 9
+```
+
+```text
+dp = [9, 6, 10, 3]
+      ^
+    updated
+```
+
+#### House `4`
+
+```text
+                  [4]
+                 /   \
+                v     v
+               [6]   [10]
+                 \   /
+                choose 6
+
+total = 4 + min(6, 10) = 10
+```
+
+```text
+dp = [9, 10, 10, 3]
+         ^
+       updated
+```
+
+Only `[9, 10]` remains meaningful. The other clipboard slots belong to lower terraces that have already been compressed.
+
+### Step 3: land on the peak `[2]`
+
+At the peak, the traveler looks at the final two possible journeys:
+
+```text
+                         [2]
+                        /   \
+                       v     v
+                      [9]   [10]
+                        \   /
+                       choose 9
+
+                 2 + min(9, 10) = 11
+```
+
+The traveler erases slot `0` one final time and writes `11`:
+
+```text
+dp = [11, 10, 10, 3]
+      ^
+  final peak
+```
+
+The program returns `dp[0]`, which is the cheapest possible resort bill: `11`.
+
+### Watch the mountain melt upward
+
+The full calculation can be viewed as the triangle collapsing into a single answer:
+
+```text
+Original mountain          Cheapest totals after each collapse
+
+       [2]                              [11]
+      [3, 4]             →             [9, 10]
+    [6, 5, 7]                       [7, 6, 10]
+  [4, 1, 8, 3]                   [4, 1, 8, 3]
+```
+
+Or as the traveler’s clipboard getting shorter:
+
+```text
+Floor filed:             [ 4,  1,  8,  3 ]
+                              ↓
+One terrace higher:        [ 7,  6, 10 ]
+                              ↓
+One terrace higher:          [ 9, 10 ]
+                              ↓
+Peak solved:                   [11]
+```
+
+### Why the analogy matches the code
+
+| Code | Mountain-resort meaning |
+|---|---|
+| `triangle[row][col]` | The toll charged by the current rest house |
+| `dp` | The traveler’s reusable clipboard of cheapest remaining bills |
+| `dp[col]` | The solved bill through the left ramp |
+| `dp[col + 1]` | The solved bill through the right ramp |
+| `min(dp[col], dp[col + 1])` | Choose the cheaper downward route |
+| `triangle[row][col] + ...` | Add the current house’s toll to that route |
+| `return dp[0]` | Read the final cheapest bill written at the peak |
+
+The clipboard saves memory because it reuses one row of notes. The unused slots are not physically deleted; each higher terrace simply looks at a shorter prefix of the same array.
 
 ## DP state
 
