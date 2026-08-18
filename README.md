@@ -17,6 +17,7 @@ This repository contains my coding-problem solutions, detailed explanations, and
 | 63 | Unique Paths II | Grid DP | Medium | [Python](dynamic-programming/0063-unique-paths-ii/solution.py) | [Explanation](dynamic-programming/0063-unique-paths-ii/explanation.md) | [Quick note](dynamic-programming/0063-unique-paths-ii/quick-note.md) |
 | 64 | Minimum Path Sum | Grid DP | Medium | [Python](dynamic-programming/0064-minimum-path-sum/solution.py) | [Explanation](dynamic-programming/0064-minimum-path-sum/explanation.md) | [Quick note](dynamic-programming/0064-minimum-path-sum/quick-note.md) |
 | 120 | Triangle | Bottom-up DP | Medium | [Python](dynamic-programming/0120-triangle/solution.py) | [Explanation](dynamic-programming/0120-triangle/explanation.md) | [Quick note](dynamic-programming/0120-triangle/quick-note.md) |
+| 242 | Valid Anagram | Frequency Array | Easy | [Python](hash-maps/0242-valid-anagram/solution.py) | [Explanation](hash-maps/0242-valid-anagram/explanation.md) | [Quick note](hash-maps/0242-valid-anagram/quick-note.md) |
 | 767 | Reorganize String | Greedy / Max Heap | Medium | [Python](heaps/0767-reorganize-string/solution.py) | [Explanation](heaps/0767-reorganize-string/explanation.md) | [Quick note](heaps/0767-reorganize-string/quick-note.md) |
 | 2357 | Make Array Zero by Subtracting Equal Amounts | Set / Observation | Easy | [Python](arrays/2357-make-array-zero/solution.py) | [Explanation](arrays/2357-make-array-zero/explanation.md) | [Quick note](arrays/2357-make-array-zero/quick-note.md) |
 
@@ -47,7 +48,11 @@ dsa-solutions/
 │       ├── explanation.md
 │       └── quick-note.md
 ├── hash-maps/
-│   └── 0049-group-anagrams/
+│   ├── 0049-group-anagrams/
+│   │   ├── solution.py
+│   │   ├── explanation.md
+│   │   └── quick-note.md
+│   └── 0242-valid-anagram/
 │       ├── solution.py
 │       ├── explanation.md
 │       └── quick-note.md
