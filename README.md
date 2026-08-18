@@ -19,6 +19,7 @@ This repository contains my coding-problem solutions, detailed explanations, and
 | 64 | Minimum Path Sum | Grid DP | Medium | [Python](dynamic-programming/0064-minimum-path-sum/solution.py) | [Explanation](dynamic-programming/0064-minimum-path-sum/explanation.md) | [Quick note](dynamic-programming/0064-minimum-path-sum/quick-note.md) |
 | 120 | Triangle | Bottom-up DP | Medium | [Python](dynamic-programming/0120-triangle/solution.py) | [Explanation](dynamic-programming/0120-triangle/explanation.md) | [Quick note](dynamic-programming/0120-triangle/quick-note.md) |
 | 128 | Longest Consecutive Sequence | Set / Sequence Start | Medium | [Python](arrays/0128-longest-consecutive-sequence/solution.py) | [Explanation](arrays/0128-longest-consecutive-sequence/explanation.md) | [Quick note](arrays/0128-longest-consecutive-sequence/quick-note.md) |
+| 169 | Majority Element | Frequency Map | Easy | [Python](hash-maps/0169-majority-element/solution.py) | [Explanation](hash-maps/0169-majority-element/explanation.md) | [Quick note](hash-maps/0169-majority-element/quick-note.md) |
 | 242 | Valid Anagram | Frequency Array | Easy | [Python](hash-maps/0242-valid-anagram/solution.py) | [Explanation](hash-maps/0242-valid-anagram/explanation.md) | [Quick note](hash-maps/0242-valid-anagram/quick-note.md) |
 | 347 | Top K Frequent Elements | Hash Map / Sorting | Medium | [Python](hash-maps/0347-top-k-frequent-elements/solution.py) | [Explanation](hash-maps/0347-top-k-frequent-elements/explanation.md) | [Quick note](hash-maps/0347-top-k-frequent-elements/quick-note.md) |
 | 767 | Reorganize String | Greedy / Max Heap | Medium | [Python](heaps/0767-reorganize-string/solution.py) | [Explanation](heaps/0767-reorganize-string/explanation.md) | [Quick note](heaps/0767-reorganize-string/quick-note.md) |
@@ -60,6 +61,10 @@ dsa-solutions/
 │   │   ├── explanation.md
 │   │   └── quick-note.md
 │   ├── 0049-group-anagrams/
+│   │   ├── solution.py
+│   │   ├── explanation.md
+│   │   └── quick-note.md
+│   ├── 0169-majority-element/
 │   │   ├── solution.py
 │   │   ├── explanation.md
 │   │   └── quick-note.md
