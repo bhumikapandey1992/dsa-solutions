@@ -13,6 +13,7 @@ This repository contains my coding-problem solutions, detailed explanations, and
 
 | # | Problem | Pattern | Difficulty | Solution | Detailed Explanation | Quick Revision |
 |---:|---|---|---|---|---|---|
+| 36 | Valid Sudoku | Sets / Matrix | Medium | [Python](hash-maps/0036-valid-sudoku/solution.py) | [Explanation](hash-maps/0036-valid-sudoku/explanation.md) | [Quick note](hash-maps/0036-valid-sudoku/quick-note.md) |
 | 49 | Group Anagrams | Hash Map / Sorting | Medium | [Python](hash-maps/0049-group-anagrams/solution.py) | [Explanation](hash-maps/0049-group-anagrams/explanation.md) | [Quick note](hash-maps/0049-group-anagrams/quick-note.md) |
 | 63 | Unique Paths II | Grid DP | Medium | [Python](dynamic-programming/0063-unique-paths-ii/solution.py) | [Explanation](dynamic-programming/0063-unique-paths-ii/explanation.md) | [Quick note](dynamic-programming/0063-unique-paths-ii/quick-note.md) |
 | 64 | Minimum Path Sum | Grid DP | Medium | [Python](dynamic-programming/0064-minimum-path-sum/solution.py) | [Explanation](dynamic-programming/0064-minimum-path-sum/explanation.md) | [Quick note](dynamic-programming/0064-minimum-path-sum/quick-note.md) |
@@ -49,6 +50,10 @@ dsa-solutions/
 │       ├── explanation.md
 │       └── quick-note.md
 ├── hash-maps/
+│   ├── 0036-valid-sudoku/
+│   │   ├── solution.py
+│   │   ├── explanation.md
+│   │   └── quick-note.md
 │   ├── 0049-group-anagrams/
 │   │   ├── solution.py
 │   │   ├── explanation.md
