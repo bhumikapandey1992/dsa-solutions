@@ -44,6 +44,89 @@ for color in nums:
     counts[color] += 1
 ```
 
+The line:
+
+```python
+counts[color] += 1
+```
+
+means:
+
+> Use the current color as an index and increase that color's counter by one.
+
+The `+= 1` operator is shorthand. For example, if `color = 2`:
+
+```python
+counts[color] += 1
+
+# Substitute color with 2:
+counts[2] += 1
+
+# Expanded form:
+counts[2] = counts[2] + 1
+```
+
+If `counts` was `[0, 0, 0]`, it becomes `[0, 0, 1]`. Only the counter at index `2` changes.
+
+### Small step-by-step example
+
+For:
+
+```python
+nums = [2, 0, 2, 1]
+counts = [0, 0, 0]
+```
+
+#### Read the first value: `color = 2`
+
+```python
+counts[2] = counts[2] + 1
+```
+
+```text
+counts = [0, 0, 1]
+```
+
+#### Read the second value: `color = 0`
+
+```python
+counts[0] = counts[0] + 1
+```
+
+```text
+counts = [1, 0, 1]
+```
+
+#### Read the third value: `color = 2`
+
+```python
+counts[2] = counts[2] + 1
+```
+
+```text
+counts = [1, 0, 2]
+```
+
+#### Read the fourth value: `color = 1`
+
+```python
+counts[1] = counts[1] + 1
+```
+
+```text
+counts = [1, 1, 2]
+```
+
+The final list means:
+
+```text
+one 0, one 1, and two 2s
+```
+
+### Counter memory rule
+
+> The color chooses the counter, and `+= 1` records one occurrence.
+
 For `nums = [2, 0, 2, 1, 1, 0]`:
 
 | Color read | Counter updated | Counts afterward |
