@@ -23,6 +23,56 @@ The last valid values of both sorted arrays are their largest remaining values. 
 - `p2 = n - 1`: largest unprocessed value in `nums2`
 - `write = m + n - 1`: position currently being filled
 
+## Looking closely at the indexing
+
+Use this example:
+
+```text
+nums1 = [1, 2, 3, 0, 0, 0], m = 3
+nums2 = [2, 5, 6],          n = 3
+```
+
+`m = 3` means that only the first three elements of `nums1` are real input values. Their indexes are `0`, `1`, and `2`; the zeros after them are merely empty placeholders.
+
+| Index in `nums1` | Element | Role |
+|---:|---:|---|
+| 0 | 1 | First valid element |
+| 1 | 2 | Second valid element |
+| 2 | 3 | Last valid element: index `m - 1 = 3 - 1` |
+| 3 | 0 | First empty placeholder |
+| 4 | 0 | Second empty placeholder |
+| 5 | 0 | Last empty placeholder: index `m + n - 1 = 3 + 3 - 1` |
+
+The `-1` appears because Python uses zero-based indexing. If there are three items, their indexes are `0`, `1`, and `2`, so the last item's index is `3 - 1`.
+
+### Where each pointer begins
+
+```text
+nums1 = [1, 2, 3, 0, 0, 0]
+                ↑        ↑
+             p1 = 2   write = 5
+
+nums2 = [2, 5, 6]
+                ↑
+             p2 = 2
+```
+
+- `p1 = m - 1 = 2` points to `3`, the largest valid value currently in `nums1`.
+- `p2 = n - 1 = 2` points to `6`, the largest value currently in `nums2`.
+- `write = m + n - 1 = 5` points to the absolute end of `nums1`, where the largest remaining value belongs.
+
+The placeholders are not part of the original sorted data. That is why `p1` starts at `m - 1`, not at the physical end of `nums1`. In contrast, `write` starts at the physical end because that is where we are building the final merged result.
+
+### Pointer memory rule
+
+```text
+p1    → end of valid data in nums1
+p2    → end of valid data in nums2
+write → end of total capacity in nums1
+```
+
+After placing a value, move the pointer that supplied it and always move `write` one position left.
+
 ## Why compare the values?
 
 Although every value from `nums2` must be copied into `nums1`, the original `nums1` values must also remain in sorted order. The current last position must receive the larger of the two largest remaining values.
