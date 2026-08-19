@@ -11,13 +11,68 @@ result = [5, 6, 7, 1, 2, 3, 4]
 
 ## Normalize `k` first
 
-Rotating an array by its length returns it to the same arrangement. Therefore, only the remainder matters:
+Think of rotating an array like moving around a clock or spinning a wheel. Moving a clock hand forward by exactly 12 hours brings it back to its starting position. Moving it 13 hours has the same final effect as moving it only 1 hour.
+
+An array behaves the same way. One complete cycle contains `n` rotations and returns every element to its original position. Therefore, only the rotations left over after removing complete cycles matter.
+
+### Watch a three-element array complete a cycle
+
+```text
+Start:          [A, B, C]
+Rotate 1 time:  [C, A, B]
+Rotate 2 times: [B, C, A]
+Rotate 3 times: [A, B, C]  ← back to the beginning
+Rotate 4 times: [C, A, B]  ← same result as 1 rotation
+```
+
+Because the length is `3`, every group of three rotations does nothing to the final arrangement. Four rotations consist of one complete cycle plus one useful rotation.
+
+### The modulo operator removes complete cycles
+
+Modulo `%` gives the remainder after division:
 
 ```python
 k %= len(nums)
 ```
 
-For an array of length `7`, rotating by `10` is the same as rotating by `3` because `10 % 7 = 3`.
+It strips away all complete cycles and keeps only the number of rotations that can change the final arrangement.
+
+```text
+k = 4, n = 3
+4 % 3 = 1
+4 rotations are equivalent to 1 rotation.
+
+k = 10, n = 7
+10 % 7 = 3
+10 rotations are equivalent to 3 rotations.
+
+k = 7000, n = 7
+7000 % 7 = 0
+7000 rotations are equivalent to no rotation.
+```
+
+### Why normalization also prevents bugs
+
+The second reversal uses this range:
+
+```python
+reverse(0, k - 1)
+```
+
+If `n = 7` and an unnormalized `k = 10`, the code would call `reverse(0, 9)`. Indexes `7`, `8`, and `9` do not exist, so accessing them would raise an `IndexError`.
+
+After normalization:
+
+```text
+k = 10 % 7 = 3
+reverse(0, k - 1) becomes reverse(0, 2)
+```
+
+That range is valid and represents the only three rotations that actually matter.
+
+### Modulo memory rule
+
+> A full trip around the array changes nothing; modulo keeps only the unfinished part of the trip.
 
 ## Intuition: split the final result into two groups
 
