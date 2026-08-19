@@ -29,6 +29,7 @@ This repository contains my coding-problem solutions, detailed explanations, and
 | 242 | Valid Anagram | Frequency Array | Easy | [Python](hash-maps/0242-valid-anagram/solution.py) | [Explanation](hash-maps/0242-valid-anagram/explanation.md) | [Quick note](hash-maps/0242-valid-anagram/quick-note.md) |
 | 347 | Top K Frequent Elements | Hash Map / Sorting | Medium | [Python](hash-maps/0347-top-k-frequent-elements/solution.py) | [Explanation](hash-maps/0347-top-k-frequent-elements/explanation.md) | [Quick note](hash-maps/0347-top-k-frequent-elements/quick-note.md) |
 | 767 | Reorganize String | Greedy / Max Heap | Medium | [Python](heaps/0767-reorganize-string/solution.py) | [Explanation](heaps/0767-reorganize-string/explanation.md) | [Quick note](heaps/0767-reorganize-string/quick-note.md) |
+| 977 | Squares of a Sorted Array | Two Pointers | Easy | [Two pointers](two-pointers/0977-squares-of-a-sorted-array/solution.py) / [Sorting](two-pointers/0977-squares-of-a-sorted-array/solution-sorting.py) | [Explanation](two-pointers/0977-squares-of-a-sorted-array/explanation.md) | [Quick note](two-pointers/0977-squares-of-a-sorted-array/quick-note.md) |
 | 2357 | Make Array Zero by Subtracting Equal Amounts | Set / Observation | Easy | [Python](arrays/2357-make-array-zero/solution.py) | [Explanation](arrays/2357-make-array-zero/explanation.md) | [Quick note](arrays/2357-make-array-zero/quick-note.md) |
 
 ## Folder structure
