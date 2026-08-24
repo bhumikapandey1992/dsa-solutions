@@ -36,6 +36,7 @@ This repository contains my coding-problem solutions, detailed explanations, and
 | 1588 | Sum of All Odd Length Subarrays | Contribution Counting | Easy | [Python](arrays/1588-sum-of-all-odd-length-subarrays/solution.py) | [Explanation](arrays/1588-sum-of-all-odd-length-subarrays/explanation.md) | [Quick note](arrays/1588-sum-of-all-odd-length-subarrays/quick-note.md) |
 | 2251 | Number of Flowers in Full Bloom | Binary Search / Event Timelines | Hard | [Python](binary-search/2251-number-of-flowers-in-full-bloom/solution.py) | [Explanation](binary-search/2251-number-of-flowers-in-full-bloom/explanation.md) | [Quick note](binary-search/2251-number-of-flowers-in-full-bloom/quick-note.md) |
 | 2357 | Make Array Zero by Subtracting Equal Amounts | Set / Observation | Easy | [Python](arrays/2357-make-array-zero/solution.py) | [Explanation](arrays/2357-make-array-zero/explanation.md) | [Quick note](arrays/2357-make-array-zero/quick-note.md) |
+| 2644 | Find the Maximum Divisibility Score | Nested Counting / Tie-breaker | Easy | [Python](arrays/2644-find-the-maximum-divisibility-score/solution.py) | [Explanation](arrays/2644-find-the-maximum-divisibility-score/explanation.md) | [Quick note](arrays/2644-find-the-maximum-divisibility-score/quick-note.md) |
 
 ## Folder structure
 
