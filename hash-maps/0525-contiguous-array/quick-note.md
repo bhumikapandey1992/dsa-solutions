@@ -6,7 +6,8 @@
 - **Core proof:** Same altitude twice means the middle journey has net change zero.
 - **Meaning:** Net zero means equal numbers of zeros and ones.
 - **Base checkpoint:** `{0: -1}`
-- **Length:** `current_index - first_index[balance]`
+- **Map:** `first_seen[count]` stores the earliest index for each count.
+- **Length:** `current_index - first_seen[count]`
 - **First occurrence:** Preserve it to maximize distance.
 - **Time:** `O(n)`
 - **Extra space:** `O(n)`
