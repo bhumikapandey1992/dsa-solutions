@@ -229,6 +229,133 @@ The three valid subarrays are:
 
 Every subarray has exactly one ending index. On each iteration, the formula counts only valid subarrays ending at the current index. Therefore, no subarray is skipped or counted twice.
 
+## Alternative solution: count by upper bound
+
+There is another clean way to express the same condition:
+
+```text
+left <= maximum <= right
+```
+
+Define `count(bound)` as the number of subarrays whose maximum is at most `bound`. Then:
+
+```text
+answer = count(right) - count(left - 1)
+```
+
+### Analogy: two guest lists
+
+Imagine making two guest lists:
+
+- The large list admits every subarray whose maximum is `<= right`.
+- The smaller list contains the unwanted subarrays whose maximum is `< left`, which is the same as `<= left - 1` for integers.
+
+The smaller list is completely contained inside the large list. Subtract it, and only subarrays whose maximum lies in `[left, right]` remain.
+
+```text
+maximum <= right
+- maximum <= left - 1
+----------------------
+  left <= maximum <= right
+```
+
+### How `count_valid_subarrays(bound)` works
+
+```python
+if num <= bound:
+    current_streak += 1
+    total += current_streak
+else:
+    current_streak = 0
+```
+
+`current_streak` is the number of consecutive values ending at the current position that are all `<= bound`.
+
+If the streak has length `3`, there are exactly three qualifying subarrays ending here:
+
+```text
+[c]
+[b, c]
+[a, b, c]
+```
+
+So we add the streak length to `total`. A value above the bound breaks the streak because every subarray crossing that value would have a maximum above the bound.
+
+### Alternative implementation
+
+```python
+class Solution:
+    def numSubarrayBoundedMax(
+        self, nums: list[int], left: int, right: int
+    ) -> int:
+        def count_valid_subarrays(bound: int) -> int:
+            total = 0
+            current_streak = 0
+
+            for num in nums:
+                if num <= bound:
+                    current_streak += 1
+                    total += current_streak
+                else:
+                    current_streak = 0
+
+            return total
+
+        return count_valid_subarrays(right) - count_valid_subarrays(left - 1)
+```
+
+### Dry run of the alternative
+
+```python
+nums = [2, 1, 4, 3]
+left = 2
+right = 3
+```
+
+First calculate `count(3)`, meaning maximum `<= 3`:
+
+| Value | Valid for bound 3? | Streak | Added | Total |
+|---:|:---:|---:|---:|---:|
+| 2 | Yes | 1 | 1 | 1 |
+| 1 | Yes | 2 | 2 | 3 |
+| 4 | No | 0 | 0 | 3 |
+| 3 | Yes | 1 | 1 | 4 |
+
+So `count(3) = 4`. These are `[2]`, `[1]`, `[2, 1]`, and `[3]`.
+
+Next calculate `count(left - 1) = count(1)`:
+
+| Value | Valid for bound 1? | Streak | Added | Total |
+|---:|:---:|---:|---:|---:|
+| 2 | No | 0 | 0 | 0 |
+| 1 | Yes | 1 | 1 | 1 |
+| 4 | No | 0 | 0 | 1 |
+| 3 | No | 0 | 0 | 1 |
+
+So `count(1) = 1`. The only unwanted subarray is `[1]`, whose maximum is below `left`.
+
+Subtract:
+
+```text
+count(3) - count(1) = 4 - 1 = 3
+```
+
+The remaining valid subarrays are `[2]`, `[2, 1]`, and `[3]`.
+
+### Why `left - 1` instead of `left`?
+
+Values equal to `left` are valid and must remain in the answer. For integer values:
+
+```text
+maximum < left  is equivalent to  maximum <= left - 1
+```
+
+Subtracting `count(left)` would incorrectly remove subarrays whose maximum equals `left`.
+
+### Complexity of the alternative
+
+The helper scans the array twice, but `2n` simplifies to `O(n)` time. It uses `O(1)` extra space.
+
 ## Complexity
 
 - Time: `O(n)` because the array is scanned once.
@@ -237,3 +364,7 @@ Every subarray has exactly one ending index. On each iteration, the formula coun
 ## Memory rule
 
 > A value above `right` creates a wall. A value in `[left, right]` creates a valid anchor. For every ending index, count the possible starts between the latest wall and the latest anchor.
+
+Alternative memory rule:
+
+> Count everything at or below the upper bound, then subtract everything below the lower bound.
