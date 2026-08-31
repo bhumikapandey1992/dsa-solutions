@@ -13,6 +13,7 @@ This repository contains my coding-problem solutions, detailed explanations, and
 
 | # | Problem | Pattern | Difficulty | Solution | Detailed Explanation | Quick Revision |
 |---:|---|---|---|---|---|---|
+| 3 | Longest Substring Without Repeating Characters | Variable Sliding Window / Set or Last Seen | Medium | [Set window](sliding-window/0003-longest-substring-without-repeating-characters/solution.py) / [Last-seen jump](sliding-window/0003-longest-substring-without-repeating-characters/solution-last-seen.py) | [Explanation](sliding-window/0003-longest-substring-without-repeating-characters/explanation.md) | [Quick note](sliding-window/0003-longest-substring-without-repeating-characters/quick-note.md) |
 | 15 | 3Sum | Sorting / Fixed Value / Two Pointers | Medium | [Python](two-pointers/0015-3sum/solution.py) | [Explanation](two-pointers/0015-3sum/explanation.md) | [Quick note](two-pointers/0015-3sum/quick-note.md) |
 | 20 | Valid Parentheses | Stack / Matching Pairs | Easy | [Commented](stacks/0020-valid-parentheses/solution.py) / [Concise](stacks/0020-valid-parentheses/solution-concise.py) | [Explanation](stacks/0020-valid-parentheses/explanation.md) | [Quick note](stacks/0020-valid-parentheses/quick-note.md) |
 | 36 | Valid Sudoku | Sets / Matrix | Medium | [Python](hash-maps/0036-valid-sudoku/solution.py) | [Explanation](hash-maps/0036-valid-sudoku/explanation.md) | [Quick note](hash-maps/0036-valid-sudoku/quick-note.md) |
