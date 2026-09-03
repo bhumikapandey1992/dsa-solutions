@@ -1,17 +1,20 @@
 # Python Interview Toolkit
 
 This track builds fluency with Python's interview-friendly standard library and
-language features. Work through the lessons in order. Each lesson contains a
-concept note, runnable examples, exercises, and tests.
+language features. Work through the lessons in order. Every lesson stays small:
+
+- `topic.md`: what the tool does, its complexity, and short examples;
+- `problem.py`: one representative problem with a runnable implementation;
+- `similar-problems.md`: follow-up exercises and related LeetCode questions.
 
 ## Study loop
 
-1. Read the lesson's `README.md` and predict each example's output.
-2. Run `python3 examples.py` and explain the time complexity aloud.
-3. Implement the functions in `exercises.py` without copying the examples.
-4. Run `python3 -m unittest test_exercises.py` from the lesson directory.
-5. Record mistakes and insights in the lesson's **My notes** section.
-6. Commit the completed lesson with `git commit -am "Practice <topic>"`.
+1. Read the concept file and predict each snippet's result.
+2. Study the representative problem, then recreate it without looking.
+3. Run `python3 problem.py` and explain the complexity aloud.
+4. Solve selected questions from `similar-problems.md` in the existing pattern
+   folders.
+5. Commit each completed problem with its explanation and quick note.
 
 Do not move on until the tests pass and you can explain when the tool is better
 than a plain list or dictionary.
@@ -40,7 +43,6 @@ Practice Counter frequency operations
 Solve Counter interview drills
 ```
 
-The first commit for a lesson may add its teaching material. A practice commit
-should contain your exercise implementations and personal notes. This makes the
-history show both what you studied and what you learned.
-
+The first commit for a lesson adds its three teaching files. Each later practice
+commit should contain a completed problem, explanation, and quick note. This
+makes the history show both what you studied and how you applied it.
