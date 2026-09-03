@@ -5,7 +5,7 @@ language features. Work through the lessons in order. Every lesson stays focused
 
 - `topic.md`: what the tool does, its complexity, and short examples;
 - `problems/`: one runnable Python file per completed practice problem;
-- `similar-problems.md`: follow-up exercises and related LeetCode questions.
+- `practice-problems.md`: the complete topic checklist, prompts, and examples.
 
 ## Study loop
 
