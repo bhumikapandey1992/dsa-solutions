@@ -1,17 +1,17 @@
 # Python Interview Toolkit
 
 This track builds fluency with Python's interview-friendly standard library and
-language features. Work through the lessons in order. Every lesson stays small:
+language features. Work through the lessons in order. Every lesson stays focused:
 
 - `topic.md`: what the tool does, its complexity, and short examples;
-- `problem.py`: one representative problem with a runnable implementation;
+- `problems/`: one runnable Python file per completed practice problem;
 - `similar-problems.md`: follow-up exercises and related LeetCode questions.
 
 ## Study loop
 
 1. Read the concept file and predict each snippet's result.
-2. Study the representative problem, then recreate it without looking.
-3. Run `python3 problem.py` and explain the complexity aloud.
+2. Solve each practice problem independently before adding its file.
+3. Run each file in `problems/` and explain the complexity aloud.
 4. Solve selected questions from `similar-problems.md` in the existing pattern
    folders.
 5. Commit each completed problem with its explanation and quick note.
@@ -43,6 +43,6 @@ Practice Counter frequency operations
 Solve Counter interview drills
 ```
 
-The first commit for a lesson adds its three teaching files. Each later practice
-commit should contain a completed problem, explanation, and quick note. This
-makes the history show both what you studied and how you applied it.
+The first commit for a lesson adds its concept and practice list. A topic practice
+commit adds the completed files under `problems/`. This makes the history show
+both what you studied and how you applied it.
